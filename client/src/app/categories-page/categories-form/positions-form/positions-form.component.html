@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col s12">
+    <div class="page-subtitle">
+      <h4>Positions:</h4>
+      <button class="waves-effect waves-light btn grey darken-1 btn-small" (click)="onAddPosition()">
+        Add position
+      </button>
+    </div>
+
+    <div *ngIf="!loading; else loader">
+      <div class="collection" *ngIf="positions.length>0; else positionsempty">
+        <a *ngFor="let pos of positions" class="collection-item collection-item-icon">
+          <span (click)="onSelectedPosition(pos)">
+            {{pos.name}} <strong>{{pos.cost}}</strong>
+          </span>
+          <span>
+            <i class="material-icons" (click)="onDeletePosition(pos)">delete</i>
+          </span>
+        </a>
+      </div>
+      <ng-template #positionsempty>
+        <div class="center">
+          <strong class="red-text">No positions at this category</strong>
+        </div>
+      </ng-template>
+    </div>
+    <ng-template #loader>
+      <app-loader></app-loader>
+    </ng-template>
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onModalSubmit($event)">
+  <div #modal class="modal">
+    <div class="modal-content">
+      <h4 class="mb1">Add position</h4>
+      <div class="input-field">
+        <input
+        formControlName="name"
+        type="text"
+        [ngClass]="{'invalid': name!.invalid && name!.touched}"
+        >
+        <label for="pos-name">Name</label>
+        <span class="helper-text red-text" *ngIf="name!.invalid && name!.touched">
+          Please fill the name field
+        </span>
+      </div>
+      <div class="input-field">
+        <input formControlName="cost" type="number"
+        [ngClass]="{'invalid': cost!.invalid && cost!.touched}"
+        >
+        <label for="pos-cost">Price</label>
+        <span class="helper-text red-text" *ngIf="cost!.invalid && cost!.touched">
+          Please fill the cost field DIGITS only & price > 1
+        </span>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button
+         type="button"
+         (click)="onModalCancel()"
+         class="modal-action waves-effect waves-black btn-flat"
+         [disabled]="form.disabled"
+      >
+        Cancel
+      </button>
+      <button
+         type="submit"
+         class="modal-action btn waves-effect"
+         [disabled]="form.disabled || form.invalid"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</form>

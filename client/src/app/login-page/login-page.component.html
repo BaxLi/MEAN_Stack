@@ -1,0 +1,36 @@
+<form class="card" [formGroup]="form" (submit)="onSubmitForm($event)">
+  <div class="card-content">
+    <span class="card-title">Login into the system</span>
+    <div class="input-field">
+      <input id="email" type="email" formControlName="email" class="form-control" placeholder="email here"
+        [ngClass]="{'invalid': form.get('email')!.invalid && form.get('email')!.touched}">
+      <label for="email">Email:</label>
+      <span class="helper-text red-text" *ngIf="form.get('email')!.invalid && form.get('email')!.touched">
+        <span *ngIf="email!.errors?.required"> fill email please</span>
+        <span *ngIf="email!.errors?.email"> fill corret email format please</span>
+      </span>
+    </div>
+
+    <div class="input-field">
+      <input id="password" type="password" formControlName="password"
+        [ngClass]="{'invalid': form.get('password')!.invalid && form.get('password')!.touched}">
+      <label for="password">Password:</label>
+      <span class="helper-text red-text" *ngIf="form.get('password')!.invalid && form.get('password')!.touched">
+        <span *ngIf="password!.errors?.required"> fill email please</span>
+        <span *ngIf="password!.errors?.minlength">
+          min password length - {{password!.errors?.minlength.requiredLength}}, but actual is {{password!.errors?.minlength.actualLength}}
+           </span>
+      </span>
+    </div>
+  </div>
+
+  <div class="card-action">
+    <button
+      class="modal-action btn waves-effect"
+      type="submit"
+      [disabled]="form.invalid || form.disabled"
+    >
+      Enter
+    </button>
+  </div>
+</form>

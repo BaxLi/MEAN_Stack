@@ -70,9 +70,10 @@ export class CategoriesFormComponent implements OnInit {
     }
 
     obs$.subscribe(
-      (category: Category) =>{
-        this.category = category
-        MaterialService.toast('Changes are saved successfully')
+      (category: Category | any) =>{
+        if (category?.message === "category updated successfuly")
+       { MaterialService.toast('Changes are saved successfully')}
+
         this.form.enable()
       },
       (err)=>{

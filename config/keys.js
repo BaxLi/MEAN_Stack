@@ -1,4 +1,5 @@
-module.exports={
-    mongoURI:`mongodb+srv://BaxLi:Qwer1234@cluster0.veayj.mongodb.net/<dbname>?retryWrites=true&w=majority`,
-    secretKey:`secretHerefor_JWT`
-}
+
+if ( process.env.NODE_ENV === 'production' )
+{ module.exports = require( './keys.prod' ) } 
+else
+{ module.exports = require( './keys.dev' ) }

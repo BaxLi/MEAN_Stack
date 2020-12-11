@@ -38,7 +38,8 @@ app.use( '/api/category', require( './routes/category' ) )
 app.use( '/api/order', require( './routes/order' ) )
 app.use( '/api/position', require( './routes/position' ) )
 
-if ( process.env.NODE_ENV === 'production' )
+// if ( process.env.NODE_ENV === 'production' )
+if ( true )
 {
     app.use( express.static( 'client/dist/client' ) )
     app.get( '*', ( req, res ) =>

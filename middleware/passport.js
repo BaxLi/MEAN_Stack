@@ -8,6 +8,7 @@ const options = {
     jwtFromRequest: extractJWT.fromAuthHeaderAsBearerToken(),
     secretOrKey: keys.jwt
 }
+console.log("keys jwt=", keys.jwt);
 
 module.exports = function ( passport )
 {

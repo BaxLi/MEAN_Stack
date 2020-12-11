@@ -1,4 +1,4 @@
 module.exports={
-    mongoURI: process.env.MONGO_URI || `mongodb://localhost/fullstack`,
+    mongoURI: process.env.MONGO_URI,
     jwt: process.env.JWT
 }

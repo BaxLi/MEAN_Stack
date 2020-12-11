@@ -4,7 +4,7 @@ import { MaterialInstance, MaterialService } from '../shared/classes/material.se
 import { Filter, Order } from '../shared/interfaces'
 import { OrdersService } from '../shared/services/orders.service'
 
-const STEP = 2
+const STEP = 5
 
 @Component({
   selector: 'app-history-page',

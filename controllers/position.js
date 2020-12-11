@@ -17,6 +17,9 @@ module.exports.getByCategoryId = async function(req, res){
     }
 }
 module.exports.create = async function(req, res){
+console.log("🚀 ~ file: position.js ~ line 20 ~ module.exports.create=function ~ req",
+ req.body)
+    
     try
     {
         const position= await new Position({
@@ -25,7 +28,11 @@ module.exports.create = async function(req, res){
             category:req.body.category,
             user:req.user.id
         })
-        position.save()         
+        try {
+            position.save() 
+        } catch (err) {
+            errorhandler(res,null,err)
+        }        
         res.status( 201 ).json(position )
     } catch ( err )
     {

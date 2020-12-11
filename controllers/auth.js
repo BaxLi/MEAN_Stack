@@ -19,7 +19,7 @@ module.exports.login = async function ( req, res )
             const token=jwt.sign({
                 email: candidate.email,
                 userId: candidate._id,
-            }, keys.secretKey,{expiresIn:60*60})
+            }, keys.jwt,{expiresIn:60*60})
             res.status( 200 ).json( {
                 message: "successfuly logged in ", 
                 token: `Bearer ${token}`,
